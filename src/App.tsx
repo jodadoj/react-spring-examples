@@ -16,7 +16,7 @@ function MyRotatingBox() {
 
   const springs = useSpring({ 
     scale: active ? 3 : 1,
-    config: config.gentle,  
+    config: config.wobbly,  
    })
 
   return (
