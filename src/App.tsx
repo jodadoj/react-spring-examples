@@ -10,15 +10,16 @@ function MyRotatingBox() {
   useFrame(({ clock }) => {
     const a = clock.getElapsedTime();
     myMesh.current.rotation.x = a;
+    myMesh.current.rotation.y = a;
   });
 
   return (
     <mesh
-      scale={active ? 1.5 : 1}
+      scale={active ? 3 : 1}
       onClick={() => setActive(!active)}
       ref={myMesh}
     >
-      <boxBufferGeometry />
+      <boxGeometry />
       <meshPhongMaterial color="royalblue" />
     </mesh>
   );
@@ -26,12 +27,10 @@ function MyRotatingBox() {
 
 export default function App() {
   return (
-    <div className="App">
       <Canvas>
         <MyRotatingBox />
         <ambientLight intensity={0.1} />
         <directionalLight />
       </Canvas>
-    </div>
   );
 }
