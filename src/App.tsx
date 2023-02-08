@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import "./App.css";
 import { Mesh } from "three";
-import { useSpring, animated } from '@react-spring/three'
+import { useSpring, animated, config } from '@react-spring/three'
 
 function MyRotatingBox() {
   const myMesh = useRef<THREE.Mesh>(new Mesh);
@@ -14,7 +14,10 @@ function MyRotatingBox() {
     myMesh.current.rotation.y = a;
   });
 
-  const springs = useSpring({ scale: active ? 3 : 1 })
+  const springs = useSpring({ 
+    scale: active ? 3 : 1,
+    config: config.gentle,  
+   })
 
   return (
     <animated.mesh 
