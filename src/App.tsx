@@ -4,7 +4,7 @@ import "./App.css";
 import { Mesh } from "three";
 import { useSpring, animated, config } from '@react-spring/three'
 
-function MyRotatingBox() {
+function MyRotatingBox():JSX.Element {
   const myMesh = useRef<THREE.Mesh>(new Mesh);
   const [active, setActive] = useState(false);
   const [hovered, setHover] = useState(false)
@@ -29,7 +29,7 @@ function MyRotatingBox() {
 
   return (
     <animated.mesh 
-      scale={springs.scale} 
+      // scale={springs.scale} 
       position={springs.postion}
       rotation-z={springs.rotation}
       onClick={() => setActive(!active)}
@@ -37,14 +37,13 @@ function MyRotatingBox() {
       onPointerOut={(event) => setHover(false)}
       ref={myMesh}
     >
-      <boxGeometry />
-      <meshPhongMaterial color="royalblue" />
-      {/* <meshPhongMaterial color={springs.color} /> */}
+      {active ? <boxGeometry /> : <sphereGeometry />}
+      <meshPhongMaterial color={hovered ? "green" : "royalblue"} />
     </animated.mesh>
   );
 }
 
-export default function App() {
+export default function App():JSX.Element {
   return (
       <Canvas>
         <MyRotatingBox />
